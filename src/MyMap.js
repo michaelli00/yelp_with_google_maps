@@ -75,7 +75,7 @@ class MyMap extends Component {
         google={this.props.google}
       >
         {this.createMarkers()}
-        <Marker icon="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" onClick={this.onMarkerClick} name={'current location'} />
+        <Marker icon="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" onClick={this.onMarkerClick} name={'current location'} />
       </CurrentLocation>
     );
   }
