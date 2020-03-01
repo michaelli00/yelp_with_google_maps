@@ -53,7 +53,7 @@ class App extends React.Component{
           (
             <div className="col">
               <List className="list" data={this.state.data} callBack={this.callBack}/>
-              <MyMap className="map" lat={this.state.lat} lng={this.state.lng} data={this.state.data}/>
+              <MyMap lat={this.state.lat} lng={this.state.lng} data={this.state.data}/>
             </div>
           ) : null
         }

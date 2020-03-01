@@ -2,7 +2,5 @@
   display: flex;
 }  
 .list {
-  min-width: 20%;
-  max-height:50%;
+  width: 15%;
 }
-
