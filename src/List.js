@@ -7,9 +7,8 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialBusinesses: this.props.data,
-      businesses: [],
-      selected: null
+      initialBusinesses: this.props.data, // original data passed down from App
+      businesses: [],                     // filtered data 
     }
   }
 
@@ -21,15 +20,15 @@ class List extends React.Component {
     return this.state.businesses.map(business => {
       const {id,name,rating} = business;
       return (
-        <div className="item" key={id} onMouseEnter={() => this.setState({selected: id})}>
-          <Item key={id} name={name} rating={rating} onMouseOver={this.onHover}/>
-        </div>
-      )
-    }
-    )
+          <div className="item" key={id}>
+            <Item key={id} name={name} rating={rating}/>
+          </div>
+      );
+    })
   }
 
   filterList = (event) => {
+    // get the original list then filter it
     let updatedList = this.state.initialBusinesses;
     updatedList = updatedList.filter(business => {
       return business.name.toLowerCase().search(
@@ -40,7 +39,7 @@ class List extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState && prevState.businesses !== this.state.businesses) {
-      this.props.callBack(this.state.businesses, this.state.selected);
+      this.props.callBack(this.state.businesses);
     }
   }
 

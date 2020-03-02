@@ -8,15 +8,15 @@ class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      initialData: null,
-      data: null,
-      lat: null,
+      initialData: null, //initial data from API call
+      data: null,        //dynamically updated data to fit filter
+      lat: null,       
       lng: null,
-      id: null
     };
   }
 
   componentDidMount() {
+    //check for geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         position => {
@@ -42,13 +42,15 @@ class App extends React.Component{
     }
   }
 
-  callBack = (business, id) => {
+  //call back passed to List component to filter data
+  callBack = (business) => {
     this.setState({data: business});
   }
 
   render() {
     return (
       <div>
+      {/* null check all states */}
         {this.state.data && this.state.lat && this.state.lng ? 
           (
             <div className="col">

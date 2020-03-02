@@ -1,6 +1,11 @@
+html {
+  overflow: hidden;
+}
 .col {
   display: flex;
 }  
 .list {
   width: 15%;
+  overflow: scroll;
+  height: 920px;
 }
