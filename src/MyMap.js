@@ -10,7 +10,8 @@ class MyMap extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      hash: {}
+      hash: {},
+      currentLocationSelected: false
     }
   }
 
@@ -18,7 +19,17 @@ class MyMap extends Component {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: true,
+      currentLocationSelected: false
+    });
+  }
+
+  onCurrentLocationMarkerClick = (props, marker, e) => {
+    this.setState({
+      selectedPlacee: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+      currentLocationSelected: true,
     });
   }
 
@@ -53,6 +64,7 @@ class MyMap extends Component {
               visible={this.state.showingInfoWindow}
               onClose={this.onClose}
             >
+            {(!this.state.currentLocationSelected && 
               <div>
                 <h4>{this.state.selectedPlace.name}</h4>
                 <a href={this.state.selectedPlace.url}>Yelp Review</a>
@@ -62,6 +74,15 @@ class MyMap extends Component {
                   <img src={this.state.selectedPlace.src} alt={this.state.selectedPlace.name} width="150px" height="150px"/>
                 </center>
               </div>
+            ) ||
+            (this.state.currentLocationSelected && 
+              <div>
+                <h4>Current Location</h4>
+                <center>
+                </center>
+              </div>
+            )
+            }
             </InfoWindow>
          ]
       )
@@ -75,7 +96,7 @@ class MyMap extends Component {
         google={this.props.google}
       >
         {this.createMarkers()}
-        <Marker icon="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" onClick={this.onMarkerClick} name={'current location'} />
+        <Marker icon="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" onClick={this.onCurrentLocationMarkerClick} name={'current location'} />
       </CurrentLocation>
     );
   }

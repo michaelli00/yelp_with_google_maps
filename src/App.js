@@ -51,13 +51,11 @@ class App extends React.Component{
     return (
       <div>
       {/* null check all states */}
-        {this.state.data && this.state.lat && this.state.lng ? 
-          (
-            <div className="col">
-              <List className="list" data={this.state.data} callBack={this.callBack}/>
-              <MyMap lat={this.state.lat} lng={this.state.lng} data={this.state.data}/>
-            </div>
-          ) : null
+        {this.state.data && this.state.lat && this.state.lng && 
+          <div className="col">
+            <List className="list" data={this.state.data} callBack={this.callBack}/>
+            <MyMap lat={this.state.lat} lng={this.state.lng} data={this.state.data}/>
+          </div>
         }
       </div>
     );
